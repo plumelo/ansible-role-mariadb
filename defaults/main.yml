@@ -12,19 +12,8 @@ mysql_hosts:
   - ::1
   - localhost
 
-# MySQL
-mysql_users:
-  - name: company
-    pass: company
-    hosts: "{{ mysql_hosts }}"
-    privs:
-      - "*.*:ALL,GRANT"
-  - name: develop
-    hosts: [localhost]
-    privs:
-      - "adds.*:ALL"
+# MySQL Users
+#mysql_users:
 
-mysqld_databases:
-  - name: company
-    state: import
-    path: /vagrant/world.sql.gz
+#MySQL Databaes
+#mysqld_databases:
