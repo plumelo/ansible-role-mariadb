@@ -1,0 +1,16 @@
+---
+
+- name: Create or delete mysql databases
+  mysql_db: name={{ item.name }} state={{ item.state | default(omit)}}
+  when: item.state != 'import'
+  with_items: "{{ mysqld_databases }}"
+
+- name: Create mysql databases for import
+  mysql_db: name={{ item.name }}
+  when: item.state == 'import'
+  with_items: "{{ mysqld_databases }}"
+
+- name: Import mysql databases
+  mysql_db: name={{ item.name }} state=import target={{ item.path }}
+  when: item.state == 'import'
+  with_items: "{{ mysqld_databases }}"
