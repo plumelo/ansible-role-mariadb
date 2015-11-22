@@ -1,7 +1,7 @@
 ---
 
 - name: Create or delete mysql databases
-  mysql_db: name={{ item.name }} state={{ item.state | default(omit)}}
+  mysql_db: name={{ item.name }} state={{ item.state | default(omit) }}
   when: item.state != 'import'
   with_items: "{{ mysql_databases }}"
 
