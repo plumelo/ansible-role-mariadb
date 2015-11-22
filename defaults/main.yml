@@ -16,4 +16,4 @@ mysql_hosts:
 mysql_users: []
 
 #MySQL Databaes
-mysqld_databases:[]
+mysql_databases: []
