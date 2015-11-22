@@ -7,8 +7,6 @@
     - python-mysqldb
   notify: restart mysql
 
-- debug: var=mysql_root_pass
-
 - name: Generate secure mysql credentials
   mysql_user: name=root host={{ item }} password="{{ mysql_root_pass}}"
   with_items: "{{ mysql_hosts }}"
