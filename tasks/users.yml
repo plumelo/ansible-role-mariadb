@@ -8,4 +8,4 @@
 
 - name: .my.cnf for default user
   template: src=default.cnf.j2 dest=~/.my.cnf mode=0600 force=yes
-  sudo: no
+  become: no
