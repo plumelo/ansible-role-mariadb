@@ -6,5 +6,5 @@
 
 - name: Import mysql databases
   mysql_db: name={{ item.name }} state=import target={{ item.path }}
-  when: (item.state is defined and item.state == 'import') or item.path|bool
+  when: (item.state is defined and item.state == 'import') or item.path|default(no)
   with_items: "{{ mysql_databases }}"
