@@ -14,6 +14,9 @@
 - name: .my.cnf for root
   template: src=root.cnf.j2 dest=~/.my.cnf mode=0600 force=yes
 
+- name: server.cnf
+  template: src=server.cnf.j2 dest=/etc/mysql/conf.d/server.cnf mode=0600 force=yes
+
 - name: Delete anonymous mysql user
   mysql_user: name="" state=absent
 
