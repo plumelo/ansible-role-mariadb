@@ -1,22 +1,10 @@
-#{{ ansible_managed }}
+# {{ ansible_managed }}
 
-[mysqld]
-bind-address = {{ mysql_bind_address }}
+{% for key, value in mysql_config.iteritems() %}
+[{{ key }}]
+{% for key, value in value.iteritems() %}
+{{ key }}{% if value|default(False) %} = {{ value }}{% endif %}
 
-key_buffer_size = {{ mysql_key_buffer_size }}
-max_allowed_packet = {{ mysql_max_allowed_packet }}
-table_open_cache = {{ mysql_table_open_cache }}
-sort_buffer_size = {{ mysql_sort_buffer_size }}
-read_buffer_size = {{ mysql_read_buffer_size }}
-read_rnd_buffer_size = {{ mysql_read_rnd_buffer_size }}
-myisam_sort_buffer_size = {{ mysql_myisam_sort_buffer_size }}
-net_buffer_length = {{ mysql_net_buffer_length }}
-thread_cache_size = {{ mysql_thread_cache_size }}
-query_cache_size = {{ mysql_query_cache_size }}
+{% endfor %}
 
-{% if mysql_max_connections %}
-max_connections = {{ mysql_max_connections }}
-{% endif %}
-{% if mysql_thread_concurrency %}
-thread_concurrency = {{ mysql_thread_concurrency }}
-{% endif %}
+{% endfor %}
