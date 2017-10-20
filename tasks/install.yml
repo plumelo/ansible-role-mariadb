@@ -6,6 +6,20 @@
     - "{{ mysql_package }}-server"
     - python-mysqldb
   notify: restart mysql
+  when: mysql_package == "mariadb, mysql"
+
+- include: percona.yml
+
+- name: Install percona
+  apt: name={{ item }} allow_unauthenticated=yes state=latest
+  with_items:
+    - "{{ mysql_package }}-server-server-5.7"
+    - "{{ mysql_package }}-server-client-5.7"
+    - "{{ mysql_package }}-toolkit"
+    - "{{ mysql_package }}-xtrabackup"
+    - python-mysqldb
+  notify: restart percona
+  when: mysql_package_percona == "yes"
 
 - name: Generate secure mysql credentials
   mysql_user: name=root host={{ item }} password="{{ mysql_root_pass}}"
@@ -13,6 +27,9 @@
 
 - name: .my.cnf for root
   template: src=root.cnf.j2 dest=~/.my.cnf mode=0600 force=yes
+
+# - name: server.cnf
+#   template: src=server.cnf.j2 dest=/etc/mysql/conf.d/server.cnf mode=0600 force=yes
 
 - name: server.cnf
   template: src=server.cnf.j2 dest=/etc/mysql/conf.d/server.cnf mode=0600 force=yes
