@@ -2,18 +2,20 @@
 
 - hosts: all
   become: 'yes'
-  vars:
-    project: 'test'
   roles:
     - role: ansible-role-mysql
       mysql_databases:
-        - name: '{{ project }}'
-          state: present
-        - name: '{{ project }}'
-          path: /vagrant/storage/mysqlsampledatabase.sql
+        - name: 'test'
+          path: /vagrant/storage/sample.sql
+        - name: 'test1'
       mysql_users:
-        - name: '{{ project }}'
+        - name: 'test'
           privs:
-            - '{{ project }}.*:ALL'
+            - 'test.*:ALL'
+          hosts:
+            - localhost
+        - name: 'test1'
+          privs:
+            - 'test1.*:ALL'
           hosts:
             - localhost
