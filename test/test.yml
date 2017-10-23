@@ -3,14 +3,14 @@
 - hosts: all
   become: 'yes'
   vars:
-    project: 'mysql'
+    project: 'test'
   roles:
     - role: ansible-role-mysql
       mysql_databases:
         - name: '{{ project }}'
           state: present
         - name: '{{ project }}'
-          path: /vagrant/storage/test.sql
+          path: /vagrant/storage/mysqlsampledatabase.sql
       mysql_users:
         - name: '{{ project }}'
           privs:
