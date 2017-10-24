@@ -34,3 +34,24 @@
           open_files_limit: 8192
           user: mysql
           log-error: <hostname>_error.log
+  tasks:
+    - name: Query to test db
+      command: mysql -utest -ptest test -Ns -e "select * from customers"
+      register: show_test_query
+
+    - debug:
+        var: show_test_query
+
+    - name: Query to test1 db
+      command: mysql -utest1 -ptest1 test -Ns -e "select * from customers"
+      register: show_test1_query
+      ignore_errors: 'True'
+
+    - debug:
+        var: show_test1_query
+
+    - assert:
+        that:
+          - "'Atelier graphique' in show_test_query.stdout"
+          - "'customers' not in show_test_query.stderr"
+        msg: "User test1 have acces to db"
