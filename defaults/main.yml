@@ -4,7 +4,7 @@
 mysql_root_pass: "{{ lookup('password', 'credentials/mysql/root length=15') }}"
 
 # MySQL package: mariadb or mysql
-mysql_package: mariadb
+mysql_package: percona
 
 # If percona
 percona_version: '5.7'
@@ -22,19 +22,5 @@ mysql_users: []
 #MySQL Databaes
 mysql_databases: []
 
-mysql_config:
-  mysqld:
-    port: 3306
-    socket: /var/run/mysqld/mysql.sock
-  mysql:
-    no_auto_rehash: ~
-    max_allowed_packet: 16M
-    prompt: '\u@\h [\d]> '
-    default_character_set: utf8
-  mysqldump:
-    max_allowed_packet: 16M
-  mysqld_safe:
-    open_files_limit: 8192
-    user: mysql
-    log-error: <hostname>_error.log
+mysql_config: []
 

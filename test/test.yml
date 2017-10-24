@@ -19,3 +19,18 @@
             - 'test1.*:ALL'
           hosts:
             - localhost
+      mysql_config:
+        mysqld:
+          port: 3306
+          socket: /var/run/mysqld/mysql.sock
+        mysql:
+          no_auto_rehash: ~
+          max_allowed_packet: 16M
+          prompt: '\u@\h [\d]> '
+          default_character_set: utf8
+        mysqldump:
+          max_allowed_packet: 16M
+        mysqld_safe:
+          open_files_limit: 8192
+          user: mysql
+          log-error: <hostname>_error.log
