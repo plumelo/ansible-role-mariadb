@@ -5,18 +5,17 @@
   roles:
     - role: ansible-role-mysql
       mysql_databases:
-        - name: 'test'
-          path: /vagrant/storage/sample.sql
         - name: 'test1'
+          path: /vagrant/storage/sample.sql
       mysql_users:
-        - name: 'test'
-          privs:
-            - 'test.*:ALL'
-          hosts:
-            - localhost
         - name: 'test1'
           privs:
             - 'test1.*:ALL'
+          hosts:
+            - localhost
+        - name: 'test2'
+          privs:
+            - 'test2.*:ALL'
           hosts:
             - localhost
       mysql_config:
