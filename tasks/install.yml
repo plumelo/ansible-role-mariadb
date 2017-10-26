@@ -4,7 +4,7 @@
   when: mysql_package == "percona"
 
 - name: Install dependencies
-  apt: name=python-mysqldb state=latest
+  apt: name=python-mysqldb state=latest update_cache=yes
 
 - name: Install mysql
   apt: name={{ item }} state=latest
