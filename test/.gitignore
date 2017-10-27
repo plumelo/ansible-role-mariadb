@@ -1,2 +1,3 @@
-test/.vagrant
-test/test.retry
+.vagrant
+*.retry
+test/roles/*
