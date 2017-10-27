@@ -3,7 +3,10 @@
 # MySQL generated root password
 mysql_root_pass: "{{ lookup('password', 'credentials/mysql/root length=15') }}"
 
-# MySQL package: mariadb or mysql
+# Installation type
+mysql_installation_type: "configuration_only"
+
+# MySQL package: mariadb or mysql or percona
 mysql_package: mysql
 
 # If percona
