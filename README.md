@@ -39,14 +39,20 @@ mysql_databases:
 # Mysql users for define user or users.(options for name, password, whether the user should exist, host and privileges)
 mysql_users:
   - name: user
-    password: 12345
-    priv: '*.*:ALL'
-    hosts: localhost
-    state: present
+    password:
+      - 12345
+    privs:
+      - '*.*:ALL'
+    hosts:
+      - localhost
+    state:
+      - present
 
   - name: user1
-    privs: user1.*:ALL
-    hosts: 127.0.0.1
+    privs:
+      - user1.*:ALL
+    hosts:
+      - 127.0.0.1
 
 # Configures mysql server "/etc/mysql/conf.d/server.cnf".(put here the configs you want)
 mysql_config:
