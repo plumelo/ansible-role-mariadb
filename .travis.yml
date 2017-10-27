@@ -3,8 +3,9 @@ language: python
 python: "2.7"
 before_install:
   - sudo apt-get update -qq
+  - sudo apt-het upgrade -qq
   - sudo apt-get install -qq python-apt python-pycurl
-  - sudo apt-get remove --auto-remove mariadb-server mysql-server
+  - sudo apt-get remove --auto-remove -qq mariadb-server mysql-server
 # Use the new container infrastructure
 sudo: required
 
