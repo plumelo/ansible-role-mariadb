@@ -9,7 +9,7 @@
 - name: Install mysql
   apt: name={{ item }}
   with_items:
-    - "{{ mysql_package }}-server"
+    - "{{ mysql_package }}-server" state=latest
 
   notify: restart mysql
   when: mysql_package == "mysql" or mysql_package == "mariadb"
