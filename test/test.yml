@@ -6,7 +6,7 @@
     - role: ansible-role-mysql
       mysql_databases:
         - name: 'test1'
-          path: /test/sample.sql
+          path: sample.sql
       mysql_users:
         - name: 'test1'
           privs:
