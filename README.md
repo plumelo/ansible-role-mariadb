@@ -1,31 +1,85 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs and configures MySQL or MariaDB or Percona server on Ubuntu servers.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role requires Ansible 2.3
+
+Install
+-------
+
+ansible-galaxy install plumelo.mysql
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Available variables are listed below, along with default values (see defaults/main.yml):
+
+```yaml
+# Choose database from mysql, mariadb, percona
+mysql_package: mysql
+
+# If percona, is necesary to specify the ppa version(or what you want)
+percona_version: '5.7'
+
+# Mysql hosts
+mysql_hosts:
+  - "{{ ansible_hostname }}"
+  - localhost
+  - ...
+
+# Mysql name(project name) for create mysql database and path if you want to import one.
+mysql_databases:
+  - name: test
+  - path: /your_path_to_db.sql
+
+# Mysql users for define user or users.(options for name, password, whether the user should exist, host and privileges)
+mysql_users:
+  - name: user
+    password: 12345
+    priv: '*.*:ALL'
+    hosts: localhost
+    state: present
+
+  - name: user1
+    privs: user1.*:ALL
+    hosts: 127.0.0.1
+
+# Configures mysql server "/etc/mysql/conf.d/server.cnf".(put here the configs you want)
+mysql_config:
+  mysqld:
+    port: 3306
+    socket: /var/run/mysqld/mysql.sock
+  mysql:
+    no_auto_rehash: ~
+    max_allowed_packet: 16M
+    prompt: '\u@\h [\d]> '
+    default_character_set: utf8
+  mysqldump:
+    max_allowed_packet: 16M
+  mysqld_safe:
+    open_files_limit: 8192
+    user: mysql
+    log-error: <hostname>_error.log
+```
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No special requirements.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: all
+      become: 'yes'
       roles:
-         - { role: username.rolename, x: 42 }
+         - role: plumelo.mysql
 
 License
 -------
@@ -35,4 +89,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+- plumelo.com
