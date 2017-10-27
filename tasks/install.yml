@@ -7,9 +7,9 @@
   apt: name=python-mysqldb state=latest update_cache=yes
 
 - name: Install mysql
-  apt: name={{ item }}
+  apt: name={{ item }} state=latest
   with_items:
-    - "{{ mysql_package }}-server" state=latest
+    - "{{ mysql_package }}-server"
 
   notify: restart mysql
   when: mysql_package == "mysql" or mysql_package == "mariadb"
