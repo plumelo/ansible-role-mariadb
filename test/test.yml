@@ -9,15 +9,11 @@
           path: /vagrant/storage/sample.sql
       mysql_users:
         - name: 'test1'
-          privs:
-            - 'test1.*:ALL'
-          hosts:
-            - localhost
+          priv: 'test1.*:ALL'
+          hosts: localhost
         - name: 'test2'
-          privs:
-            - 'test2.*:ALL'
-          hosts:
-            - localhost
+          priv: 'test2.*:ALL'
+          hosts: localhost
       mysql_config:
         mysqld:
           port: 3306
