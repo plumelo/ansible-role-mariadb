@@ -1,0 +1,54 @@
+---
+
+- hosts: all
+  become: 'yes'
+  roles:
+    - role: ansible-role-mysql
+      mysql_databases:
+        - name: 'test1'
+          path: /vagrant/storage/sample.sql
+      mysql_users:
+        - name: 'test1'
+          priv: 'test1.*:ALL'
+          hosts: localhost
+        - name: 'test2'
+          priv: 'test2.*:ALL'
+          hosts: localhost
+      mysql_config:
+        mysqld:
+          port: 3306
+          socket: /var/run/mysqld/mysql.sock
+        mysql:
+          no_auto_rehash: ~
+          max_allowed_packet: 16M
+          prompt: '\u@\h [\d]> '
+          default_character_set: utf8
+        mysqldump:
+          max_allowed_packet: 16M
+        mysqld_safe:
+          open_files_limit: 8192
+          user: mysql
+          log-error: <hostname>_error.log
+  tasks:
+    - name: Query to test1 db
+      command: mysql -u test1 -ptest1 test1 -Ns -e "select * from customers"
+      register: show_test1_query
+      changed_when: 'False'
+
+    - debug:
+        var: show_test1_query
+
+    - name: Query to test2 db
+      command: mysql -u test2 -ptest2 test1 -Ns -e "select * from customers"
+      register: show_test2_query
+      ignore_errors: 'True'
+      changed_when: 'False'
+
+    - debug:
+        var: show_test2_query
+
+    - assert:
+        that:
+          - "'Atelier graphique' in show_test1_query.stdout"
+          - "'customers' not in show_test2_query.stderr"
+        msg: "User test2 have acces to db"

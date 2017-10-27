@@ -5,6 +5,9 @@
   with_items: "{{ mysql_databases }}"
 
 - name: Import mysql databases
-  mysql_db: name={{ item.name }} state=import target={{ item.path }}
-  when: (item.state is defined and item.state == 'import') or item.path|default(False)
+  shell: "mysql -vvv -s -N {{ item.name }} < {{ item.path }} | grep -E 'rows affected' | grep -v -E '0 rows'"
+  register: mysql_rows
   with_items: "{{ mysql_databases }}"
+  failed_when: mysql_rows.stderr|length > 0
+  changed_when: mysql_rows.stdout.find("rows affected") != -1
+  when: item.path|default(False)

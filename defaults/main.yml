@@ -1,9 +1,13 @@
 ---
+
 # MySQL generated root password
 mysql_root_pass: "{{ lookup('password', 'credentials/mysql/root length=15') }}"
 
 # MySQL package: mariadb or mysql
 mysql_package: mariadb
+
+# If percona
+percona_version: '5.7'
 
 # MySQL hosts used for creating users
 mysql_hosts:
@@ -12,8 +16,10 @@ mysql_hosts:
   - ::1
   - localhost
 
+# MySQL Databases
+mysql_databases: []
+
 # MySQL Users
 mysql_users: []
 
-#MySQL Databaes
-mysql_databases: []
+mysql_config: []

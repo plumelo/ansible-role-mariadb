@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+
+{% for key, value in mysql_config.iteritems() %}
+[{{ key }}]
+{% for key, value in value.iteritems() %}
+{{ key }}{% if value|default(False) %} = {{ value }}{% endif %}
+
+{% endfor %}
+
+{% endfor %}
