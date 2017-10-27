@@ -6,14 +6,19 @@
     - role: ansible-role-mysql
       mysql_databases:
         - name: 'test1'
-          path: /vagrant/storage/sample.sql
+          path: /vagrant/sample.sql
       mysql_users:
         - name: 'test1'
-          priv: 'test1.*:ALL'
-          hosts: localhost
-        - name: 'test2'
-          priv: 'test2.*:ALL'
-          hosts: localhost
+          privs:
+            - 'test1.*:ALL'
+          hosts:
+            - localhost
+        - name:
+            - 'test2'
+          privs:
+            - 'test2.*:ALL'
+          hosts:
+            - localhost
       mysql_config:
         mysqld:
           port: 3306
