@@ -3,6 +3,9 @@ Role Name
 
 Installs and configures MySQL or MariaDB or Percona server on Ubuntu servers.
 
+[![Build Status](https://travis-ci.org/plumelo/ansible-role-mysql.svg?branch=mysql-server)](https://travis-ci.org/plumelo/ansible-role-mysql)
+[![Ansible Galaxy](https://img.shields.io/badge/style-plumelo.mysql-blue.svg?style=flat&label=role&test=plumelo.mysql)](https://galaxy.ansible.com/plumelo/mysql/)
+
 Requirements
 ------------
 
