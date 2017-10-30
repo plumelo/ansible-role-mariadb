@@ -6,4 +6,4 @@
   service: name=mysql state=reloaded
 
 - name: restart percona
-  action: service name=mysql state=restarted
+  service: name=mysql state=restarted
