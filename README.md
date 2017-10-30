@@ -19,6 +19,10 @@ Role Variables
 Available variables are listed below, along with default values (see defaults/main.yml):
 
 ```yaml
+# Installation type(mysql is installed from other source and only want to configure mysql-server)
+mysql_installation_type: ""
+# mysql_installation_type: 'configuration_only'
+
 # Choose database from mysql, mariadb, percona
 mysql_package: mysql
 
