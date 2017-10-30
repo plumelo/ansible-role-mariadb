@@ -12,6 +12,9 @@ mysql_package: mysql
 # If percona
 percona_version: '5.7'
 
+# If percona
+percona_version: '5.7'
+
 # MySQL hosts used for creating users
 mysql_hosts:
   - "{{ ansible_hostname }}"
