@@ -19,7 +19,7 @@ Role Variables
 Available variables are listed below, along with default values (see defaults/main.yml):
 
 ```yaml
-# Installation type(mysql is installed from other source and only want to configure mysql-server)
+# Installation type(if mysql is installed from other source and only want to configure mysql-server, put configuration_only)
 mysql_installation_type: ""
 # mysql_installation_type: 'configuration_only'
 
