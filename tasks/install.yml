@@ -26,6 +26,7 @@
 
 - name: server.cnf
   template: src=server.cnf.j2 dest=/etc/mysql/conf.d/server.cnf mode=0600 force=yes
+  when: mysql_config|default(False)
 
 - name: Delete anonymous mysql user
   mysql_user: name="" state=absent
