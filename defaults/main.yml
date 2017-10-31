@@ -25,4 +25,4 @@ mysql_databases: []
 # MySQL Users
 mysql_users: []
 
-mysql_config: []
+mysql_config:
