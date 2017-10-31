@@ -4,7 +4,7 @@
   become: 'yes'
   roles:
     - role: ansible-role-mysql
-      mysql_configuration_only: "configuration_only"
+      mysql_installation_type: "configuration_only"
       mysql_databases:
         - name: 'test1'
           path: sample.sql
