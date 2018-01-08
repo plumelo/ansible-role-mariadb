@@ -22,7 +22,7 @@ Role Variables
 Available variables are listed below, along with default values (see defaults/main.yml):
 
 ```yaml
-# Installation type(if mysql is installed from other source 
+# Installation type(if mysql is installed from other source
 # and only want to configure mysql-server, put configuration_only)
 mysql_installation_type: ""
 # mysql_installation_type: 'configuration_only'
@@ -40,9 +40,14 @@ mysql_hosts:
   - ...
 
 # Mysql name(project name) for create mysql database and path if you want to import one.
+# Added posibility to import sql from bz2 and gz
 mysql_databases:
   - name: test
   - path: /your_path_to_db.sql
+  - name: test
+  - path: /your_path_to_sql.bz2
+  - name: test
+  - path: /your_path_to_sql.gz
 
 # Mysql users for define user or users.(options for name, password, whether the user should exist, host and privileges)
 mysql_users:
