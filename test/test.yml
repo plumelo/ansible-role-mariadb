@@ -3,9 +3,13 @@
 - hosts: all
   become: 'yes'
   roles:
-    - role: ansible-role-mysql
-      mysql_installation_type: "configuration_only"
+    - role: plumelo.mysql
+      mysql_installation_type: ""
       mysql_databases:
+        - name: 'test1'
+          path: sample.sql
+        - name: 'test1'
+          path: sample.sql.bz2
         - name: 'test1'
           path: sample.sql
       mysql_users:
