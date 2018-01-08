@@ -5,7 +5,7 @@
   with_items: "{{ mysql_databases }}"
 
 - name: Import mysql databases
-  shell: "mysql -vvv -s -N {{ item.name }} < {{ item.path }} | grep -E 'rows affected' | grep -v -E '0 rows'"
+  shell: "{{ item.path.endswith('.bz2')|ternary('bunzip2',item.path.endswith('.gz')|ternary('gunzip','cat')) }} < {{ item.path }} | mysql -vvv -s -N {{ item.name }} | grep -E 'rows affected' | grep -v -E '0 rows'"
   register: mysql_rows
   with_items: "{{ mysql_databases }}"
   failed_when: mysql_rows.stderr|length > 0
