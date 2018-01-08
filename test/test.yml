@@ -4,7 +4,7 @@
   become: 'yes'
   roles:
     - role: plumelo.mysql
-      mysql_installation_type: ""
+      mysql_installation_type: "configuration_only"
       mysql_databases:
         - name: 'test1'
           path: sample.sql
