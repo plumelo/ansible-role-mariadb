@@ -1,4 +1,4 @@
-Role Name
+plumelo.mysql
 =========
 
 Installs and configures MySQL or MariaDB or Percona server on Ubuntu servers.
