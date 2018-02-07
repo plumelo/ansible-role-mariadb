@@ -5,6 +5,8 @@
 - include: install.yml
   when: mysql_installation_type == ""
 
+- include: configure.yml
+
 - include: users.yml
   when: mysql_users is defined and (mysql_users|length)>0
 
