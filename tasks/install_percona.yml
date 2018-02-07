@@ -15,3 +15,10 @@
 - name: Update apt cache
   apt: update_cache=yes
   changed_when: False
+
+- name: Install percona
+  apt: name={{ item }}-{{ percona_version }} state=latest allow_unauthenticated=yes
+  with_items:
+    - "{{ mysql_package }}-server-server"
+  notify: restart percona
+  when: mysql_package == "percona" and percona_version is defined
