@@ -33,4 +33,3 @@
 - name: Restart mariadb service
   systemd: state=restarted daemon_reload=yes name=mariadb
   when: apt_mysql_pd_result.changed
-

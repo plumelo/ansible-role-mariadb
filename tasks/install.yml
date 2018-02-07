@@ -3,7 +3,7 @@
 - include: percona.yml
   when: mysql_package == "percona"
 
-- include: mariadb.yml
+- include: install_mariadb.yml
   when: mysql_package == "mariadb"
 
 - include: mysql.yml
