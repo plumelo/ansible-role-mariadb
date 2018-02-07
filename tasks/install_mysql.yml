@@ -1,0 +1,6 @@
+---
+
+- name: Install mysql
+  apt: name={{ item }} state=latest
+  with_items:
+    - "{{ mysql_package }}-server"
