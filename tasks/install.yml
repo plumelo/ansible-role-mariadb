@@ -6,5 +6,5 @@
 - include: install_mariadb.yml
   when: mysql_package == "mariadb"
 
-- include: mysql.yml
+- include: install_mysql.yml
   when: mysql_package == "mysql"
