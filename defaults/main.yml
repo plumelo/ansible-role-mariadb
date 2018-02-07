@@ -26,3 +26,11 @@ mysql_databases: []
 mysql_users: []
 
 mysql_config:
+
+mariadb_version: '10.2'
+
+mariadb_apt_mirror: 'http://ams2.mirrors.digitalocean.com'
+mariadb_apt_repositories:
+  - 'deb {{ mariadb_apt_mirror }}/mariadb/repo/{{ mariadb_version }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main'
+mariadb_apt_keyserver: 'keyserver.ubuntu.com'
+mariadb_apt_keyid: '0xF1656F24C74CD1D8'
