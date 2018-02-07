@@ -1,6 +1,6 @@
 ---
 
-- include: percona.yml
+- include: install_percona.yml
   when: mysql_package == "percona"
 
 - include: install_mariadb.yml
