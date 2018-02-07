@@ -1,0 +1,24 @@
+---
+
+- name: Generate secure mysql credentials
+  mysql_user: name=root host={{ item }} password="{{ mysql_root_pass}}"
+  with_items: "{{ mysql_hosts }}"
+
+- name: .my.cnf for root
+  template: src=root.cnf.j2 dest=~/.my.cnf mode=0600 force=yes
+  register: mysql_root_my_cnf_status
+
+- name: server.cnf
+  template: src=server.cnf.j2 dest=/etc/mysql/conf.d/server.cnf mode=0644 force=yes
+  when: mysql_config|default(False)
+  register: mysql_conf_status
+
+- name: Restart mysql to apply config
+  service: name=mysql state=restarted
+  when: mysql_root_my_cnf_status.changed or mysql_conf_status.changed
+
+- name: Delete anonymous mysql user
+  mysql_user: name="" state=absent
+
+- name: Remove mysql test database
+  mysql_db: name=test state=absent
