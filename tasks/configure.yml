@@ -24,7 +24,7 @@
 - debug: var=systemctl_status
 
 - name: Cat mysql logs
-  shell: ls /var/log/
+  shell: ls /var/log/mysql/error.log
   register: cat_res
 
 - debug: var=cat_res
