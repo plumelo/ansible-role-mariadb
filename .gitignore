@@ -1,3 +1,4 @@
 .vagrant
 *.retry
 test/roles/*
+!test/roles/plumelo.mysql
