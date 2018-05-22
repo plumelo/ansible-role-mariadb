@@ -1,10 +1,10 @@
 ---
 
-- include: install_percona.yml
+- import_tasks: install_percona.yml
   when: mysql_package == "percona"
 
-- include: install_mariadb.yml
+- import_tasks: install_mariadb.yml
   when: mysql_package == "mariadb"
 
-- include: install_mysql.yml
+- import_tasks: install_mysql.yml
   when: mysql_package == "mysql"

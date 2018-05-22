@@ -1,14 +1,14 @@
 ---
 
-- include: dependencies.yml
+- import_tasks: dependencies.yml
 
-- include: install.yml
+- import_tasks: install.yml
   when: mysql_installation_type == ""
 
-- include: configure.yml
+- import_tasks: configure.yml
 
-- include: users.yml
+- import_tasks: users.yml
   when: mysql_users is defined and (mysql_users|length)>0
 
-- include: databases.yml
+- import_tasks: databases.yml
   when: mysql_databases is defined and (mysql_databases|length)>0
