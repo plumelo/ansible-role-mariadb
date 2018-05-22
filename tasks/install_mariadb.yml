@@ -14,7 +14,9 @@
   with_items: '{{ mariadb_apt_repositories }}'
 
 - name: Install mysql
-  apt: name={{ item }} state=latest
+  apt:
+    name: '{{ item }}'
+    state: latest
   with_items:
     - "{{ mysql_package }}-server"
   notify: restart mysql
@@ -31,5 +33,8 @@
   register: apt_mysql_pd_result
 
 - name: Restart mariadb service
-  systemd: state=restarted daemon_reload=yes name=mariadb
+  systemd:
+    state: restarted
+    daemon_reload: true
+    name: mariadb
   when: apt_mysql_pd_result.changed

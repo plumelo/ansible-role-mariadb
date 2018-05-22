@@ -1,23 +1,30 @@
 ---
 
 - name: Obtaining percona public key
-  apt_key: url=http://www.percona.com/downloads/RPM-GPG-KEY-percona
-          state=present
+  apt_key:
+    url: http://www.percona.com/downloads/RPM-GPG-KEY-percona
+    state: present
 
 - name: Adding percona repository
-  apt_repository: repo='deb http://repo.percona.com/apt {{ ansible_distribution_release }} main'
-          state=present
+  apt_repository:
+    repo: 'deb http://repo.percona.com/apt {{ ansible_distribution_release }} main'
+    state: present
 
 - name: Adding percona source repository
-  apt_repository: repo='deb-src http://repo.percona.com/apt {{ ansible_distribution_release }} main'
-          state=present
+  apt_repository:
+    repo: 'deb-src http://repo.percona.com/apt {{ ansible_distribution_release }} main'
+    state: present
 
 - name: Update apt cache
-  apt: update_cache=yes
-  changed_when: False
+  apt:
+    update_cache: true
+  changed_when: false
 
 - name: Install percona
-  apt: name={{ item }}-{{ percona_version }} state=latest allow_unauthenticated=yes
+  apt:
+    name: '{{ item }}-{{ percona_version }}'
+    state: latest
+    allow_unauthenticated: true
   with_items:
     - "{{ mysql_package }}-server-server"
   notify: restart percona

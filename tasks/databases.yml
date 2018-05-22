@@ -1,7 +1,9 @@
 ---
 
 - name: Create or delete mysql databases
-  mysql_db: name={{ item.name }} state={{ item.state|default(omit) }}
+  mysql_db:
+    name: '{{ item.name }}'
+    state: '{{ item.state|default(omit) }}'
   with_items: "{{ mysql_databases }}"
 
 - name: Import mysql databases
@@ -10,4 +12,4 @@
   with_items: "{{ mysql_databases }}"
   failed_when: mysql_rows.stderr|length > 0
   changed_when: mysql_rows.stdout.find("rows affected") != -1
-  when: item.path|default(False)
+  when: item.path|default(false)
