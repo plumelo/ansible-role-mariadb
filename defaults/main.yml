@@ -6,6 +6,10 @@ mysql_root_pass: "{{ lookup('password', 'credentials/mysql/root length=15') }}"
 # Installation type
 mysql_installation_type: ""
 
+# Python iterpreter
+mysql_pkgs:
+  - "{{ ('python3' in ansible_python_interpreter | default('')) | ternary('python3', 'python') }}-mysqldb"
+
 # MySQL package: mariadb or mysql or percona
 mysql_package: mysql
 
