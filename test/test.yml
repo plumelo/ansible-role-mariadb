@@ -1,17 +1,17 @@
 ---
 
 - hosts: all
-  become: 'yes'
+  become: true
   roles:
     - role: plumelo.mysql
-      mysql_installation_type: "configuration_only"
+      # mysql_installation_type: "configuration_only"
       mysql_databases:
         - name: 'test1'
-          path: sample.sql
+          path: /vagrant/sample.sql
         - name: 'test1'
-          path: sample.sql.bz2
+          path: /vagrant/sample.sql.bz2
         - name: 'test1'
-          path: sample.sql
+          path: /vagrant/sample.sql
       mysql_users:
         - name: 'test1'
           privs:
@@ -40,7 +40,7 @@
     - name: Query to test1 db
       command: mysql -u test1 -ptest1 test1 -Ns -e "select * from customers"
       register: show_test1_query
-      changed_when: 'False'
+      changed_when: 'false'
 
     - debug:
         var: show_test1_query
@@ -48,8 +48,8 @@
     - name: Query to test2 db
       command: mysql -u test2 -ptest2 test1 -Ns -e "select * from customers"
       register: show_test2_query
-      ignore_errors: 'True'
-      changed_when: 'False'
+      ignore_errors: 'true'
+      changed_when: 'false'
 
     - debug:
         var: show_test2_query
