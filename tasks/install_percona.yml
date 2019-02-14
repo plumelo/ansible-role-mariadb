@@ -23,7 +23,7 @@
 - name: Install percona
   apt:
     name: '{{ item }}-{{ percona_version }}'
-    state: latest
+    state: present
     allow_unauthenticated: true
   with_items:
     - "{{ mysql_package }}-server-server"

@@ -54,7 +54,8 @@
     - debug:
         var: show_test2_query
 
-    - assert:
+    - name: If have acces to db
+      assert:
         that:
           - "'Atelier graphique' in show_test1_query.stdout"
           - "'customers' not in show_test2_query.stderr"
