@@ -3,6 +3,6 @@
 - name: Install dependencies
   apt:
     name: '{{ item }}'
-    state: latest
+    state: present
     update_cache: true
   with_items: '{{ mysql_pkgs }}'

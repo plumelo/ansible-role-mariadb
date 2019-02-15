@@ -1,8 +1,8 @@
 # {{ ansible_managed }}
 
-{% for key, value in mysql_config.iteritems() %}
+{% for key, value in mysql_config.items() %}
 [{{ key }}]
-{% for key, value in value.iteritems() %}
+{% for key, value in value.items() %}
 {{ key }}{% if value|default(false) %} = {{ value }}{% endif %}
 
 {% endfor %}
